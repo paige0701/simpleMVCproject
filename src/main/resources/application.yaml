@@ -1,0 +1,37 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+  jmx:
+    enabled: false
+  # DB
+  datasource:
+    initialize: true
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    username: root
+    password: root
+    test-while-idle: true
+    test-on-borrow: true
+    validation-query: SELECT 1
+  jpa:
+      database: mysql
+      show-sql: false
+      hibernate:
+        naming.physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        hibernate:
+          hbm2ddl:
+            auto: update
+          c3p0:
+            timeout: 1800
+            idle_test_period: 100
+
+logging:
+  pattern:
+    console: "[%thread] %date{yyyy-mm-dd hh:MM:ss} %logger{0}: %msg%n"
+  level:
+    org:
+      springframework:
+        web: DEBUG
